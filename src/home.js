@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import './App.js'
+
 class Home extends Component {
 
-     changeSection (event){
+     changeFolders =(event)=>{
         event.preventDefault();
-        this.props.changeNotes(event.target.notes)
-        this.props.changeFolders(event.target.folders)
+        let newFolder = {
+            folderName: event.target.folders.value
+        }
+        this.props.handleAddFolder(newFolder)
+    }
+
+    changeNotes =(event)=>{
+        event.preventDefault();
+        let newNote = {
+            noteName: event.target.notes.value
+        }
+        this.props.handleAddNote(newNote)
     }
 
     render() {
@@ -17,7 +28,7 @@ class Home extends Component {
                 {this.props.home}
             </div>
             <div>
-                <form onsubmit={(e) => this.handleAddFolder(e)} className="folderContent">
+                <form onSubmit={(e) => this.changeFolders(e)} className="folderContent">
                     <input type="text"  name="folders"/>
                          <button type="submit" className="folderButton">
                                Add Folder
@@ -25,9 +36,9 @@ class Home extends Component {
                         <button type="reset">
                         reset
                         </button>
-                        {this.handleAddFolder}
+                       
                 </form>
-                <form onsubmit={(e) => this.handleAddNote(e)} className="noteContent">
+                <form onSubmit={(e) => this.changeNotes(e)} className="noteContent">
                     <input type="text" name="notes"/>
                     <button type="submit" className="noteButton">
                          Add Note
@@ -43,3 +54,5 @@ class Home extends Component {
         }
 }
 export default Home;
+//this.props.changeNotes(event.target.notes)
+        //this.props.changeFolders(event.target.folders)

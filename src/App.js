@@ -6,31 +6,27 @@ import Home from './home';
 import Note from './note';
 import PropTypes from 'prop-types';
 
-
-
 //DevTools audits is a chrome extension
 //start on 9090 for server this.props.history.push('/');
 //start on 3000 for react
 class App extends React.Component {
   state = {
     home:[],
-    note:[],
-    folder:[]
+    notes:[],
+    folders:[]
   }
 
-handleAddFolder(folder){
+handleAddFolder=(folder)=>{
   let folders = this.state.folders;
   folders.push(folder)
-  let folderName = folder;
   this.setState({
     folders:folders
   })
 }
-
-handleAddNote(note){
+//Add notes to the folders
+handleAddNote=(note)=>{
   let notes = this.state.notes;
   notes.push(note)
-  let noteName = note;
   this.setState({
     notes:notes
   })
@@ -74,7 +70,7 @@ componentDidMount(){
      const addNote = this.state.push()
        this.setState({addNote})
        
-      const addFolder= this.state.push()
+      const addFolder = this.state.push()
         this.setState({addFolder})
         
       }
@@ -111,10 +107,13 @@ render() {
   <Link to ='/note'> Note </Link> </content> 
 
 <main>
- <Route path ="/" render={()=><Home changeFolders={this.changeFolders}changeNotes={this.changeNotes}></Home>}/>
- <Route path="/folder" component={Folder}/>
+ <Route path ="/" render={()=><Home handleAddNote={this.handleAddNote}
+ handleAddFolder={this.handleAddFolder}
+ changeFolders={this.changeFolders}changeNotes={this.changeNotes}></Home>}/>
  
- <Route path="/note" component={Note} />
+ <Route path="/folder" render={()=> <Folder folders={this.state.folders}/>}/>
+ 
+ <Route path="/note" render={()=> <Note notes={this.state.notes}/>}/>
 </main>
   
 </div>
@@ -122,18 +121,15 @@ render() {
   );
   }
 
-//result.propTypes = {
-//  click: PropTypes.func,
-//  changeNotes: PropTypes.string,
-//  changeFolders: PropTypes.string
-  
-//};
-//changeNotes.propTypes = {
-//  note: PropTypes.array
-//}
-//changeFolders.propTypes = {
-//  folder: PropTypes.array
-//}
-
 };
 export default App;
+
+App.propTypes = {
+ click: PropTypes.func,
+  changeNotes: PropTypes.string,
+    changeFolders: PropTypes.string,
+      notes:PropTypes.string,
+        folders:PropTypes.string
+  
+};
+
