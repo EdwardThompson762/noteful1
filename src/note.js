@@ -10,11 +10,11 @@ class Note extends Component {
                     Note
                 </div>
                 <div className='notePageContent'>
-                    {this.props.notes.map( folder =>{
+                    {this.props.notes.map( note =>{
                         return(
                             <div>
                                 <h3>
-                                    {folder.folderName}
+                                    {note.noteName}
                                 </h3>
                         
                             </div>

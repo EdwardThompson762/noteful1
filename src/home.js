@@ -20,6 +20,18 @@ class Home extends Component {
     }
 
     render() {
+        let folderList = [{
+            folderName : "Folder 1"
+        },
+        {
+            folderName : "Folder 2"
+        },
+        {
+            folderName : "Folder 3"
+        },
+        {
+            folderName : "Folder 4"
+        }]
         return(
             
         <section className='homePage'>
@@ -30,6 +42,7 @@ class Home extends Component {
             <div>
                 <form onSubmit={(e) => this.changeFolders(e)} className="folderContent">
                     <input type="text"  name="folders"/>
+                    
                          <button type="submit" className="folderButton">
                                Add Folder
                         </button>
@@ -40,6 +53,13 @@ class Home extends Component {
                 </form>
                 <form onSubmit={(e) => this.changeNotes(e)} className="noteContent">
                     <input type="text" name="notes"/>
+                    <select name="folders">
+                        {folderList.map( folder => {
+                            return (
+                            <option> {folder.folderName} </option>
+                            )
+                        })}
+                    </select>
                     <button type="submit" className="noteButton">
                          Add Note
                     </button>

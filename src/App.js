@@ -5,7 +5,7 @@ import Folder from './folder';
 import Home from './home';
 import Note from './note';
 import PropTypes from 'prop-types';
-
+//drop down menu for notes in folders
 //DevTools audits is a chrome extension
 //start on 9090 for server this.props.history.push('/');
 //start on 3000 for react
